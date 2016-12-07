@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Joke Viewer</string>
+    <string name="joke_placeholder">Dank Meme</string>
+</resources>
