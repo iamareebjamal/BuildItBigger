@@ -22,6 +22,7 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
+    private AdPresenter adPresenter;
     private boolean isJokeLoaded = false;
     private ProgressBar progressBar;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        adPresenter = (AdPresenter) getSupportFragmentManager().findFragmentById(R.id.fragment);
     }
 
     @Override
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
         progressBar.setVisibility(View.VISIBLE);
+        adPresenter.showAd();
         new JokeLoader().execute(this);
     }
 
