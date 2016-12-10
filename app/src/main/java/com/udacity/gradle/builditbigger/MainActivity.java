@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,14 +19,15 @@ import com.joker.viewer.JokeActivity;
 import java.io.IOException;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
+
+    private boolean isJokeLoaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,15 +47,21 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view) {
-        new EndpointsAsyncTask().execute();
+        new JokeLoader().execute(this);
     }
 
-    class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
+    public boolean isJokeLoaded() {
+        return isJokeLoaded;
+    }
+
+    public class JokeLoader extends AsyncTask<Context, Void, String> {
         private JokerAPI jokerAPI = null;
         private Context context;
 
         @Override
-        protected String doInBackground(Void... params) {
+        protected String doInBackground(Context... params) {
+            context = params[0];
+
             if (jokerAPI == null) {
                 JokerAPI.Builder builder = new JokerAPI.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
@@ -78,11 +85,11 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            isJokeLoaded = true;
             Intent jokeIntent = new Intent(context, JokeActivity.class);
             jokeIntent.putExtra(JokeActivity.JOKE, result);
             startActivity(jokeIntent);
         }
     }
-
 
 }
