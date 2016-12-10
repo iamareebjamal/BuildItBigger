@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -22,11 +23,14 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     private boolean isJokeLoaded = false;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     @Override
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
+        progressBar.setVisibility(View.VISIBLE);
         new JokeLoader().execute(this);
     }
 
@@ -86,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             isJokeLoaded = true;
+            progressBar.setVisibility(View.INVISIBLE);
             Intent jokeIntent = new Intent(context, JokeActivity.class);
             jokeIntent.putExtra(JokeActivity.JOKE, result);
             startActivity(jokeIntent);

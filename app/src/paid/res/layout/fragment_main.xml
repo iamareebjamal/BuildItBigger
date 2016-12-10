@@ -22,7 +22,14 @@
         android:layout_below="@+id/instructions_text_view"
         android:onClick="tellJoke"
         android:text="@string/button_text"
-
         />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>
