@@ -7,6 +7,12 @@ of four modules. A Java library that provides jokes, a Google Cloud Endpoints
 activity for displaying jokes, and an Android app that fetches jokes from the
 GCE module and passes them to the Android Library for display.
 
+## Screenshots
+![](https://i.imgsafe.org/c812e5d36e.png)
+![](https://i.imgsafe.org/c813196c8f.png)
+![](https://i.imgsafe.org/c8130d4a05.png)
+![](https://i.imgsafe.org/c8131660a7.png)
+
 ## Why this Project
 
 As Android projects grow in complexity, it becomes necessary to customize the
