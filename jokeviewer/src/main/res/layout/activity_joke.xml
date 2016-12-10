@@ -8,12 +8,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:gravity="center"
     tools:context="com.joker.viewer.JokeActivity">
 
     <TextView
         android:id="@+id/jokeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="16sp"
         tools:text="@string/joke_placeholder" />
 
 </LinearLayout>
